@@ -7,8 +7,7 @@ function [PSDRAW,freqRAW]=PSDofRAW(DATA,POINTS,delt,UPPERfLIM)
 %Nyquist Frequency. For speed, will be trimmed to the nearest value
 %that
 %satisfies POINTS=2^p where p=integer. Generally, 128, 256, and 512
-%are
-%adequate values of POITNS
+%are adequate values of POINTS
 %delt=Time between samples of DATA
 % UPPERfLIM=Highest limit at which to calculate the PSD, if UPPERfLIM=0
 %Hz,
