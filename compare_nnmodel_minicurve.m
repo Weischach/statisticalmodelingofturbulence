@@ -7,7 +7,7 @@ clear all; close all; clc;
 
 load logmldata500.mat
 
-%% loading ensemble model parameters
+%% loading ensemble model parameters. download the mincurve folder for the required files.
 
 cd minicurve
 
