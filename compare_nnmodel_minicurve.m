@@ -14,7 +14,7 @@ cd minicurve
 load ens_mods.mat
 
 a1 = kf;
-b1 = sz;
+b1 = sz;  %% number of frequency points used to create input and output training/testing sample for LSTM models
 % a1 = 0;
 % b1 = 25;
 verfcn = 0;
@@ -31,13 +31,13 @@ for shuff = 2:2:8
         for j = 0:4
             kf1 = kf + j;
             m = strcat(m1,num2str(kf1),'.mat');
-            load(m)
+            load(m)   %% loading every output file save for every split for every cross-validtion
             for l = 1:size(testset,2)
-                samp = testset(l)+1;
-                nnorder(t1) = samp;
+                samp = testset(l)+1;  %% the order of datasets is stored along with model output
+                nnorder(t1) = samp;   %% model prediction are stored in the same order
                 for l1 = 1:(500/sz)
-                    pwwtest((l1-1)*sz+1:l1*sz,t1) = test_y((l-1)*(500/sz)+l1,:);
-                    pwwmodel((l1-1)*sz+1:l1*sz,t1) = yhat((l-1)*(500/sz)+l1,:);
+                    pwwtest((l1-1)*sz+1:l1*sz,t1) = test_y((l-1)*(500/sz)+l1,:);  %% the actual output of the respective split
+                    pwwmodel((l1-1)*sz+1:l1*sz,t1) = yhat((l-1)*(500/sz)+l1,:);   %% the model predicted output of the respective split
                 end
                 gtnum(t2,t1) = samp;
                 gt(t1) = samplist(samp);
