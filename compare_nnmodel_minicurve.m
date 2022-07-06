@@ -7,10 +7,14 @@ clear all; close all; clc;
 
 load logmldata500.mat
 
+
 %% loading ensemble model parameters. download the mincurve folder for the required files.
+
 
 cd minicurve
 
+
+%% this folder also contains ens_mod.mat which has the details of the 48 models required to run the model.
 load ens_mods.mat
 
 a1 = kf;
@@ -51,7 +55,7 @@ for shuff = 2:2:8
         pwwver = reshape(pwwseq(:,23,:),size(pwwtest));
         pwwpred = reshape(pwwseq(:,22,:),size(pwwtest));
         verfn = mean(mean((pwwtest-pwwver).^2));
-        verfcn = verfcn + verfn;    % verfcn = 0 implies the computation was model data was calculated correctly
+        verfcn = verfcn + verfn;    % verfcn = 0 implies that the model data was calculated correctly
         ind_model_devn(t2,:) = mean((pwwtest-pwwmodel).^2);
         act_devn = mean((pwwtest-pwwpred).^2);
         ind_mod_perf(t2,:) = (act_devn-ind_model_devn(t2,:));
@@ -60,7 +64,7 @@ for shuff = 2:2:8
 end
 
 
-ens_mod = reshape(mean(pm1,1),size(pwwmodel)); %for the ensemble average
+ens_mod = reshape(mean(pm1,1),size(pwwmodel)); %% for the ensemble average
 
 
 
@@ -121,11 +125,11 @@ end
 
 
 
-%% plot the individual model performance with respect to the estimate for every sample in a sorted order %%
+%% plot the ensemble model performance with respect to the estimate for every sample in a sorted order %%
 
 
 
-m = length(compar(compar<0));
+m = length(compar(compar<0)); %% number of datasets with negative performance factor
 plot(compar)
 hold on
 plot(zeros(249))
