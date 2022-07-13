@@ -5,7 +5,8 @@ close all; clear all; clc;
 
 
 %% There are 101 files with wind data from multiple anemometers
-% filenames.mat contains the name of these 101 files 
+%% filenames.mat contains the name of these 101 files
+%% mnum=9 will load the file 20141031-Modint-B02.mat
 load filenames.mat
 
 for mnum = 9
